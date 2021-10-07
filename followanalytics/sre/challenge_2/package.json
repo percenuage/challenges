@@ -1,0 +1,19 @@
+{
+  "name": "challenge_2",
+  "version": "1.0.0",
+  "description": "Follow Analytics • Challenge 2 • Log Parser API",
+  "main": "index.js",
+  "scripts": {
+    "part1": "node ./part_1/index.js",
+    "part2": "node ./part_2/index.js",
+    "part3": "node ./part_3/index.js",
+    "part4": "node ./part_4/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Axel Gendillard",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.19.0",
+    "lodash": "4.17.15"
+  }
+}

@@ -1,0 +1,159 @@
+<html>
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+	<title>Cryptio</title>
+
+	<!-- FAVICON -->
+	<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+
+	<!-- STYLES -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
+	<style>
+		*, *:before, *:after {
+			box-sizing: border-box;
+		}
+		body {
+			margin: 0;
+			min-height: 100vh;
+			font-family: "Open Sans", sans-serif;
+		}
+		.container {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		.container:hover .top:before, .container:active .top:before, .container:hover .bottom:before, .container:active .bottom:before, .container:hover .top:after, .container:active .top:after, .container:hover .bottom:after, .container:active .bottom:after {
+			margin-left: 250px;
+			transform-origin: -250px 50%;
+			transition-delay: 0s;
+		}
+		.container:hover .center, .container:active .center {
+			opacity: 1;
+			transition-delay: 0.2s;
+		}
+		.top:before, .bottom:before, .top:after, .bottom:after {
+			content: '';
+			display: block;
+			position: absolute;
+			width: 200vmax;
+			height: 200vmax;
+			top: 50%;
+			left: 50%;
+			margin-top: -100vmax;
+			transform-origin: 0 50%;
+			transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+			z-index: 10;
+			opacity: 0.65;
+			transition-delay: 0.2s;
+		}
+		.top:before {
+			transform: rotate(45deg);
+			background: #e46569;
+		}
+		.top:after {
+			transform: rotate(135deg);
+			background: #ecaf81;
+		}
+		.bottom:before {
+			transform: rotate(-45deg);
+			background: #60b8d4;
+		}
+		.bottom:after {
+			transform: rotate(-135deg);
+			background: #3745b5;
+		}
+		.center {
+			position: absolute;
+			width: 400px;
+			height: 400px;
+			top: 50%;
+			left: 50%;
+			margin-left: -200px;
+			margin-top: -200px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding: 30px;
+			opacity: 0;
+			transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+			transition-delay: 0s;
+			color: #333;
+		}
+		.center input {
+			width: 100%;
+			padding: 15px;
+			margin: 5px;
+			border-radius: 1px;
+			border: 1px solid #ccc;
+			font-family: inherit;
+		}
+		.button {
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+		}
+		.result {
+			color: #555555;
+			font-size: 2rem;
+		}
+
+	</style>
+
+	<!-- SCRIPTS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script>
+		'use strict';
+		function get(event) {
+			let base = $('input[name=base]').val().toUpperCase();
+			let quote = $('input[name=quote]').val().toUpperCase();
+			let value = $('input[name=value]').val();
+			let date = $('input[name=date]').val();
+
+			let url = '/api/currencies/';
+
+			if (date) url += date;
+			else url += 'latest';
+
+			url += `?base_currency=${base}&quote_currency=${quote}&value=${value}`;
+
+			$.get(url, res => {
+				console.log(res);
+				$('#result').html(res.total.toFixed(5) + ' ' + quote);
+			});
+			event.preventDefault();
+		}
+	</script>
+
+</head>
+
+<body>
+
+<div class="container">
+	<div class="top"></div>
+	<div class="bottom"></div>
+	<form class="center" onsubmit="get(event)">
+		<h2>Cryptio</h2>
+		<input type="text" name="base" placeholder="Base Currency [XXX]" pattern="[A-Za-z]{3}" required />
+		<input type="text" name="quote" placeholder="Quote Currency [XXX]" pattern="[A-Za-z]{3}" required />
+		<input type="number" name="value" placeholder="Value" min="0" required />
+		<input type="text" name="date" placeholder="Date [YYYY-MM-DD] (optional for historical rates)" pattern="[12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])" />
+		<input type="submit" class="button" />
+		<h2 id="result" class="result"></h2>
+		<h2>&nbsp;</h2>
+	</form>
+</div>
+
+</body>
+
+</html>

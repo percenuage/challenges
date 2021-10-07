@@ -1,0 +1,20 @@
+{
+  "name": "aws-challenges",
+  "version": "1.0.0",
+  "description": "AWS Challenges",
+  "main": "challenges.js",
+  "scripts": {
+    "test": "node challengesTest.js",
+    "start": "node challenges.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/percenuage/aws-challenges.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/percenuage/aws-challenges/issues"
+  },
+  "homepage": "https://github.com/percenuage/aws-challenges#readme"
+}

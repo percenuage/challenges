@@ -1,0 +1,37 @@
+{
+  "name": "cryptio",
+  "version": "1.0.0",
+  "description": "Technical test for Cryptio company",
+  "author": "Percenuage",
+  "contributors": [],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:percenuage/cryptio.git"
+  },
+  "engines": {
+    "node": "10.x.x",
+    "npm": "6.x.x"
+  },
+  "main": "bin/server.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon --watch server/ --watch bin/ .",
+    "debug": "nodemon --inspect . --watch server/ --watch bin/",
+    "test": "echo test"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/percenuage/cryptio/blob/master/README.md",
+  "private": false,
+  "dependencies": {
+    "dotenv": "6.2.0",
+    "express": "4.16.4",
+    "express-basic-auth": "1.2.0",
+    "helmet": "3.15.0",
+    "morgan": "1.9.1",
+    "request": "2.88.0",
+    "request-promise-native": "1.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.9"
+  }
+}
